@@ -10,6 +10,7 @@ const ProductCardTest = ({ product }) => {
     <div className="p-4 border rounded">
       <Link href={`/products/${product.id}`}>
         <img src={product.thumbnail} alt="" />
+        <h3>{product.brand}</h3>
         <h2>{product.title}</h2>
         <p>{product.price} kr</p>
       </Link>
