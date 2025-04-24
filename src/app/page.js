@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import ProductCardTest from "./components/ProductCardTest";
 
 export default function Home() {
   return (

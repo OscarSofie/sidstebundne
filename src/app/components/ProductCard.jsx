@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
+import ProductCardTest from "./ProductCardTest";
 
 export default function ProductCard({ product }) {
-
-
   return (
     <div>
       <h2>{product.title}</h2>

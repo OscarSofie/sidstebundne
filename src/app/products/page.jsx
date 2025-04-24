@@ -1,17 +1,19 @@
-
-import ProductCard from '../components/ProductCard';
+import CartIcon from "../components/CartIcon";
+import ProductCard from "../components/ProductCard";
+import ProductCardTest from "../components/ProductCardTest";
 
 const Products = async () => {
-  const res = await fetch('https://dummyjson.com/products');
+  const res = await fetch("https://dummyjson.com/products");
   const data = await res.json();
   const products = data.products;
 
   return (
     <main>
-      <h1 >Produkter</h1>
-      <div >
+      <CartIcon></CartIcon>
+      <h1>Produkter</h1>
+      <div>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCardTest key={product.id} product={product} />
         ))}
       </div>
     </main>
