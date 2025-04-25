@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import BrandBanner from './components/brandBanner/BrandBanner';
+import Link from "next/link";
+import ProductCardTest from "./components/ProductCardTest";
 
 export default function Home() {
   return (

@@ -8,6 +8,7 @@ const Singleview = async ({ params }) => {
 
   return (
     <div>
+      <h3>{product.brand}</h3>
       <h1>{product.title}</h1>
       <p>{product.description}</p>
       <p>{product.price}</p>
