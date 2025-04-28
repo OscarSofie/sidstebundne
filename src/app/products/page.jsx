@@ -1,67 +1,129 @@
 "use client";
-import { useState, useEffect } from "react";
-import CartIcon from "../components/CartIcon";
+
+import { useEffect, useState } from "react";
 import ProductCardTest from "../components/ProductCardTest";
+import CartIcon from "../components/CartIcon";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1); //start på side 1
-  const [loading, setLoading] = useState(true);
+  const [filtered, setFiltered] = useState([]);
+  const [filters, setFilters] = useState({
+    category: "",
+    brand: "",
+  });
+  const [page, setPage] = useState(1);
 
-  const fetchProducts = async (page) => {
-    setLoading(true);
-    const res = await fetch(
-      `https://dummyjson.com/products?limit=20&skip=${(page - 1) * 20}`
-    );
-    const data = await res.json();
-    setProducts(data.products);
-    setLoading(false);
-  };
+  const itemsPerPage = 20;
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]);
+    fetch("https://dummyjson.com/products?limit=100")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.products);
+        setFiltered(data.products);
+        setPage(1);
+      });
+  }, []);
 
-  const handleNext = () => {
-    setPage(page + 1);
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    const updatedFilters = { ...filters, [name]: value };
+    setFilters(updatedFilters);
+
+    let filteredProducts = products;
+
+    if (updatedFilters.category) {
+      filteredProducts = filteredProducts.filter(
+        (p) => p.category === updatedFilters.category
+      );
+    }
+
+    if (updatedFilters.brand) {
+      filteredProducts = filteredProducts.filter(
+        (p) => p.brand === updatedFilters.brand
+      );
+    }
+
+    setFiltered(filteredProducts);
+    setPage(1); // reset til side 1 ved ny filtrering
   };
 
-  const handlePrev = () => {
-    if (page > 1) setPage(page - 1);
-  };
+  const uniqueCategories = [...new Set(products.map((p) => p.category))];
+  const uniqueBrands = [
+    ...new Set(
+      products
+        .filter((p) => !filters.category || p.category === filters.category)
+        .map((p) => p.brand)
+    ),
+  ];
+
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const currentPageProducts = filtered.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   return (
-    <main>
+    <main className="mx-auto px-4 py-8">
       <CartIcon />
-      <h1>Produkter</h1>
+      <h1 className="text-3xl font-bold mb-4">
+        {filters.category ? `Kategori: ${filters.category}` : "Alle produkter"}
+      </h1>
 
-      {loading ? (
-        <p>Indlæser produkter...</p>
-      ) : (
-        <div>
-          <div className="grid grid-cols-4 gap-4">
-            {products.map((product) => (
-              <ProductCardTest key={product.id} product={product} />
-            ))}
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
+        <select
+          name="category"
+          onChange={handleFilterChange}
+          className="border p-2"
+        >
+          <option value="">Alle kategorier</option>
+          {uniqueCategories.map((cat, index) => (
+            <option key={`${cat}-${index}`} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
 
-          <div className="flex justify-between mt-4">
-            <button
-              onClick={handlePrev}
-              disabled={page === 1}
-              className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-400"
-            >
-              Forrige
-            </button>
-            <button
-              onClick={handleNext}
-              className="px-4 py-2 bg-blue-600 text-white rounded"
-            >
-              Næste
-            </button>
-          </div>
-        </div>
-      )}
+        <select
+          name="brand"
+          onChange={handleFilterChange}
+          className="border p-2"
+        >
+          <option value="">Alle brands</option>
+          {uniqueBrands.map((brand, index) => (
+            <option key={`${brand}-${index}`} value={brand}>
+              {brand}
+            </option>
+          ))}
+          
+        </select>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {currentPageProducts.map((product) => (
+          <ProductCardTest key={product.id} product={product} />
+        ))}
+      </div>
+
+      <div className="flex justify-between mt-6">
+        <button
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={page === 1}
+          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+        >
+          Forrige
+        </button>
+        <span className="px-4 py-2">
+          Side {page} af {totalPages}
+        </span>
+        <button
+          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={page === totalPages}
+          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+        >
+          Næste
+        </button>
+      </div>
     </main>
   );
 };

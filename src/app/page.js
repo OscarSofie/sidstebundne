@@ -1,29 +1,25 @@
+
 import Link from "next/link";
 import ProductCardTest from "./components/ProductCardTest";
+import Image from "next/image";
+import Header from "./components/Header";
+
 
 export default function Home() {
   return (
-    <main>
-      <div>
-        <Image
-          src="/img/makeup-bg.jpg"
-          alt="Makeup baggrund"
-          fill
-          className="object-cover z-0 "
-          priority
-        />
-        <div className="absolute top-1/2 left-10 z-10">
-        <Link
-          href="/products"
-          className="bg-black text-white hover:text-pink-500 px-6 py-3 text-4xl"
-        >
-          Produkter
+
+    <div>
+      <section className="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-pink-100 to-blue-100">
+        <h1 className="text-5xl font-bold mb-4">Alt hvad du mangler – ét sted!</h1>
+        <p className="text-lg text-gray-700 mb-8">Oplev tusindvis af produkter inden for elektronik, skønhed, bolig og meget mere.</p>
+        <Link href="/products" className="bg-black text-white hover:bg-pink-600 transition px-6 py-3 rounded text-lg">
+          Gå til produkter
         </Link>
-        <Link href="/products/beauty" className="bg-black text-white hover:text-pink-500 px-6 py-3 text-4xl">Beauty</Link>
-        </div>
+      </section>
+       
       </div>
-        <BrandBanner />
-    </main>
+   
+
 
   );
 }

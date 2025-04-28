@@ -21,10 +21,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <main className="bg-gradient-to-b from-white to-blue-200 min-h-screen">
           <Header />
-        {children}
+          {children}
+        </main>
       </body>
     </html>
   );
