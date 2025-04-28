@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCartStore } from "../store/cartStore";
 import { useState } from "react";
 
@@ -35,17 +36,25 @@ const Cart = () => {
               key={item.id}
               className="flex items-center gap-6 border-b pb-4"
             >
-              <img
-                className="w-28 h-28 object-cover rounded-md"
-                src={item.thumbnail}
-                alt={item.title}
-              />
+              <Link
+                href={`/products/${item.id}`}
+                className="text-blue-500 hover:underline"
+              >
+                <img
+                  className="w-28 h-28 object-cover rounded-md"
+                  src={item.thumbnail}
+                  alt={item.title}
+                />
+              </Link>
 
               <div className="flex-1">
-                <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-gray-500">
-                  {item.quantity} x {item.price} kr
-                </p>
+                <Link href={`/products/${item.id}`}>
+                  <h3 className="text-2xl font-bold">{item.title}</h3>
+
+                  <p className="text-gray-500">
+                    {item.quantity} x {item.price} kr
+                  </p>
+                </Link>
 
                 <button
                   onClick={() => removeFromCart(item.id)}
@@ -64,7 +73,7 @@ const Cart = () => {
           </button>
 
           {clearState === 1 && (
-            <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl border border-gray-300 shadow-lg p-4 rounded w-64 z-10">
+            <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl border border-gray-300 shadow-lg p-4  w-64 z-10">
               <p className="text-center mb-4 font-medium">
                 Er du sikker på, at du vil tømme kurven?
               </p>
