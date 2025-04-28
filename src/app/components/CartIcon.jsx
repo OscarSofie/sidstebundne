@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { TiShoppingCart } from "react-icons/ti";
 import { useCartStore } from "../store/cartStore";
 import { useState } from "react";
@@ -27,12 +28,21 @@ const CartIcon = () => {
       </Link>
 
       {showPreview && cart.length > 0 && (
-        <div className="absolute right-0 mt-0.5 w-72 bg-white shadow-lg border rounded-lg p-3 z-50">
+        <div className="absolute right-0 mt-0.5 w-72 bg-white shadow-lg border border-gray-300  rounded-2xl p-3 z-50">
           <p className="font-semibold mb-2">Kurv</p>
           <ul className="text-sm max-h-60 overflow-y-auto space-y-1">
             {cart.map((item) => (
               <li key={item.id} className="flex justify-between">
-                <span>{item.title}</span>
+                <span className="flex ">
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    width={350}
+                    height={350}
+                    className="object-cover rounded-xl mb-4 w-20 "
+                  />
+                  {item.title}
+                </span>
                 <span>{item.quantity} stk</span>
               </li>
             ))}

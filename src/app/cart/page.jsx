@@ -67,7 +67,7 @@ const Cart = () => {
           ))}
           <button
             onClick={handleClearCartClick}
-            className=" cursor-pointer bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition inline-block w-fit mx-auto"
+            className=" cursor-pointer bg-red-700 text-white font-semibold px-4 py-2 rounded-3xl hover:bg-red-800 transition inline-block w-fit mx-auto"
           >
             Tøm kurven
           </button>
@@ -80,13 +80,13 @@ const Cart = () => {
               <div className="flex justify-center gap-4">
                 <button
                   onClick={handleJa}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                  className="bg-red-700 text-white px-3 py-1 rounded-3xl hover:bg-red-800 transition"
                 >
                   Ja
                 </button>
                 <button
                   onClick={handleNej}
-                  className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400 transition"
+                  className="bg-gray-300 text-gray-800 px-3 py-1 rounded-3xl hover:bg-gray-400 transition"
                 >
                   Nej
                 </button>
