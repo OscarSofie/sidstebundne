@@ -5,6 +5,7 @@ import { useCartStore } from "../store/cartStore";
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -15,7 +16,7 @@ const Cart = () => {
       ) : (
         <div className="flex flex-col gap-6">
           {cart.map((item) => (
-            <div 
+            <div
               key={item.id}
               className="flex items-center gap-6 border-b pb-4"
             >
@@ -27,17 +28,25 @@ const Cart = () => {
 
               <div className="flex-1">
                 <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-gray-500">{item.quantity} x {item.price} kr</p>
+                <p className="text-gray-500">
+                  {item.quantity} x {item.price} kr
+                </p>
 
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="mt-2 inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                  className="cursor-pointer mt-2 hover:underline"
                 >
-                  Fjern fra kurven
+                  Slet
                 </button>
               </div>
             </div>
           ))}
+          <button
+            onClick={() => clearCart()}
+            className="cursor-pointer bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition inline-block w-fit "
+          >
+            Tøm kurven
+          </button>
         </div>
       )}
     </div>
