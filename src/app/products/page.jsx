@@ -100,7 +100,7 @@ const Products = () => {
       </div>
 
       {/* Produktgrid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
         {currentPageProducts.map((product) => (
           <div
             key={product.id}
