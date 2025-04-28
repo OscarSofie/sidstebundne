@@ -27,7 +27,7 @@ const CartIcon = () => {
       </Link>
 
       {showPreview && cart.length > 0 && (
-        <div className="absolute left-0 mt-0.5 w-72 bg-white shadow-lg border rounded-lg p-3 z-50">
+        <div className="absolute right-0 mt-0.5 w-72 bg-white shadow-lg border rounded-lg p-3 z-50">
           <p className="font-semibold mb-2">Kurv</p>
           <ul className="text-sm max-h-60 overflow-y-auto space-y-1">
             {cart.map((item) => (
