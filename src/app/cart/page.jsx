@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCartStore } from "../store/cartStore";
 import { useState } from "react";
+import Image from "next/image";
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
@@ -40,10 +41,12 @@ const Cart = () => {
                 href={`/products/${item.id}`}
                 className="text-blue-500 hover:underline"
               >
-                <img
-                  className="w-28 h-28 object-cover rounded-md"
+                <Image
                   src={item.thumbnail}
                   alt={item.title}
+                  width={350}
+                  height={350}
+                  className="object-cover rounded-xl mb-4 w-35 "
                 />
               </Link>
 

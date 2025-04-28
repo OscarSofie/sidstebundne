@@ -29,7 +29,7 @@ const CartIcon = () => {
 
       {showPreview && cart.length > 0 && (
         <div className="absolute right-0 mt-0.5 w-72 bg-white shadow-lg border border-gray-300  rounded-2xl p-3 z-50">
-          <p className="font-semibold mb-2">Kurv</p>
+          <p className="font-semibold mb-2">Din kurv:</p>
           <ul className="text-sm max-h-60 overflow-y-auto space-y-1">
             {cart.map((item) => (
               <li key={item.id} className="flex justify-between">
