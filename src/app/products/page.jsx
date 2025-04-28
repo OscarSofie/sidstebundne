@@ -64,17 +64,18 @@ const Products = () => {
   );
 
   return (
-    <main className="mx-auto px-4 py-8">
+    <main className="mx-4 md:mx-8 sm:mx-6 px-4 py-12">
       <CartIcon />
-      <h1 className="text-3xl font-bold mb-4">
+      <h1 className="text-4xl font-bold mb-8 mt-4 text-center sm:text-left">
         {filters.category ? `Kategori: ${filters.category}` : "Alle produkter"}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
+      {/* Filtre */}
+      <div className="flex flex-wrap gap-4 justify-center sm:justify-start mb-10">
         <select
           name="category"
           onChange={handleFilterChange}
-          className="border p-2"
+          className="border p-2 rounded shadow-sm"
         >
           <option value="">Alle kategorier</option>
           {uniqueCategories.map((cat, index) => (
@@ -87,7 +88,7 @@ const Products = () => {
         <select
           name="brand"
           onChange={handleFilterChange}
-          className="border p-2"
+          className="border p-2 rounded shadow-sm"
         >
           <option value="">Alle brands</option>
           {uniqueBrands.map((brand, index) => (
@@ -95,31 +96,37 @@ const Products = () => {
               {brand}
             </option>
           ))}
-          
         </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {/* Produktgrid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-8">
         {currentPageProducts.map((product) => (
-          <ProductCardTest key={product.id} product={product} />
+          <div
+            key={product.id}
+            className="hover:shadow-lg rounded-xl p-4 transition-transform transform hover:scale-105"
+          >
+            <ProductCardTest product={product} />
+          </div>
         ))}
       </div>
 
-      <div className="flex justify-between mt-6">
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-4 mt-12">
         <button
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
-          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+          className="px-5 py-2 bg-gray-800 text-white rounded disabled:opacity-50 hover:bg-gray-700"
         >
           Forrige
         </button>
-        <span className="px-4 py-2">
+        <span className="text-lg font-semibold">
           Side {page} af {totalPages}
         </span>
         <button
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={page === totalPages}
-          className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+          className="px-5 py-2 bg-gray-800 text-white rounded disabled:opacity-50 hover:bg-gray-700"
         >
           Næste
         </button>

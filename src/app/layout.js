@@ -1,15 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const rethinkSans = Rethink_Sans({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-rethink-sans",
 });
 
 export const metadata = {
@@ -19,13 +15,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-      >
-        <main className="bg-gradient-to-b from-white to-blue-200 min-h-screen">
-          <Header />
-          {children}
-        </main>
+    <html lang="da" className={rethinkSans.variable}>
+      <body>
+        <Header />
+        {children}
       </body>
     </html>
   );
