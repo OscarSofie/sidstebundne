@@ -1,11 +1,26 @@
 "use client";
 
 import { useCartStore } from "../store/cartStore";
+import { useState } from "react";
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const clearCart = useCartStore((state) => state.clearCart);
+  const [clearState, setClearState] = useState(0);
+
+  const handleClearCartClick = () => {
+    setClearState((state) => (state === 1 ? 0 : 1));
+  };
+
+  const handleJa = () => {
+    clearCart();
+    setClearState(0);
+  };
+
+  const handleNej = () => {
+    setClearState(0);
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -14,7 +29,7 @@ const Cart = () => {
       {cart.length === 0 ? (
         <p className="text-gray-500">Kurven er tom</p>
       ) : (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 relative">
           {cart.map((item) => (
             <div
               key={item.id}
@@ -42,11 +57,33 @@ const Cart = () => {
             </div>
           ))}
           <button
-            onClick={() => clearCart()}
-            className="cursor-pointer bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition inline-block w-fit "
+            onClick={handleClearCartClick}
+            className=" cursor-pointer bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition inline-block w-fit mx-auto"
           >
             Tøm kurven
           </button>
+
+          {clearState === 1 && (
+            <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl border border-gray-300 shadow-lg p-4 rounded w-64 z-10">
+              <p className="text-center mb-4 font-medium">
+                Er du sikker på, at du vil tømme kurven?
+              </p>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleJa}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                >
+                  Ja
+                </button>
+                <button
+                  onClick={handleNej}
+                  className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400 transition"
+                >
+                  Nej
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
