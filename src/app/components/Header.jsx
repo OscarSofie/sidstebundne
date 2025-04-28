@@ -1,26 +1,47 @@
 "use client";
 
-import { BsBasket } from "react-icons/bs";
+import { useState } from "react";
 import Link from "next/link";
 import CartIcon from "./CartIcon";
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <div className="py-3 top-0 bg-transparent z-10 relative flex justify-between items-center px-4">
-      <nav className="flex flex-col mx-2 sm:flex-row justify-between items-center px-4 gap-4 sm:gap-0 text-black">
-        <ul className="flex flex-col sm:flex-row sm:gap-20 text-lg font-medium">
-          <li className="cursor-pointer hover:text-pink-500">
-            <Link href="/">Forside</Link>
+    <header className=" bg-tranparent shadow-b-md py-4">
+      <nav className="flex justify-between items-center mx-8 px-4">
+        <ul className="flex gap-8 text-lg font-medium">
+          <li>
+            <Link href="/" className="hover:text-gray-600">
+              Forside
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-pink-500">
-            <Link href="/products">Produkter</Link>
+          <li>
+            <Link href="/products" className="hover:text-gray-600">
+              Produkter
+            </Link>
           </li>
         </ul>
-      </nav>
-      <div className="flex justify-end">
+        <form action="/search" method="GET" className="flex">
+          <input
+            type="text"
+            name="q"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Søg Title..."
+            className="border border-gray-300 bg-transparent rounded-l px-4 py-2"
+          />
+          <button
+            type="submit"
+            className="bg-black hover:bg-gray-600 text-white px-4 py-2 rounded-r"
+          >
+            Søg
+          </button>
+        </form>
+        
         <CartIcon />
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 
