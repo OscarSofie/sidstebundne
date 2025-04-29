@@ -1,3 +1,4 @@
+'use client'
 import ProductCardTest from "../components/ProductCardTest";
 
 async function getSearchResults(query) {
