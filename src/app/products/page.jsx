@@ -65,7 +65,6 @@ const Products = () => {
 
   return (
     <main className="mx-4 md:mx-8 sm:mx-6 px-4 py-12">
-      <CartIcon />
       <h1 className="text-4xl font-bold mb-8 mt-4 text-center sm:text-left">
         {filters.category ? `Kategori: ${filters.category}` : "Alle produkter"}
       </h1>
