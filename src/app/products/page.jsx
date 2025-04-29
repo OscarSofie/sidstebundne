@@ -2,6 +2,7 @@
 import ProductCardTest from "../components/ProductCardTest";
 import FilterCatBrand from "../components/FilterCatBrand"; // ny komponent
 import { getProducts } from "../api/products";
+import PageShift from "../components/PageShift";
 
 export default async function ProductsPage({ searchParams }) {
   const products = await getProducts();
@@ -19,8 +20,8 @@ export default async function ProductsPage({ searchParams }) {
     filtered = filtered.filter((p) => p.brand === selectedBrand);
   }
 
-  const uniqueCategories = [...new Set(products.map((p) => p.category))];
-  const uniqueBrands = [
+  const categories = [...new Set(products.map((p) => p.category))];
+  const brands = [
     ...new Set(
       products
         .filter((p) => !selectedCategory || p.category === selectedCategory)
@@ -40,10 +41,11 @@ export default async function ProductsPage({ searchParams }) {
         {selectedCategory ? `Kategori: ${selectedCategory}` : "Alle produkter"}
       </h1>
 
-      <FilterCatBrand        selectedCategory={selectedCategory}
+      <FilterCatBrand
+        selectedCategory={selectedCategory}
         selectedBrand={selectedBrand}
-        categories={uniqueCategories}
-        brands={uniqueBrands}
+        categories={categories}
+        brands={brands}
       />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
@@ -53,6 +55,8 @@ export default async function ProductsPage({ searchParams }) {
           </div>
         ))}
       </div>
+
+      <PageShift page={page} totalPages={totalPages} />
     </main>
   );
 }
