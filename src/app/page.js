@@ -2,6 +2,7 @@ import Link from "next/link";
 import ProductCardTest from "./components/ProductCardTest";
 import Image from "next/image";
 import Header from "./components/Header";
+import Head from "next/head";
 
 export default function Home() {
   return (

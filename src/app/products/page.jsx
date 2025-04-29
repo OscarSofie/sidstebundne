@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ProductCardTest from "../components/ProductCardTest";
 import CartIcon from "../components/CartIcon";
+import Head from "next/head";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
