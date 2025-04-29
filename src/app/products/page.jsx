@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ProductCardTest from "../components/ProductCardTest";
 import CartIcon from "../components/CartIcon";
+import Head from "next/head";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -65,6 +66,10 @@ const Products = () => {
 
   return (
     <main className="mx-4 md:mx-8 sm:mx-6 px-4 py-12">
+      <Head>
+       
+        <title>Produker</title>
+      </Head>
       <h1 className="text-4xl font-bold mb-8 mt-4 text-center sm:text-left">
         {filters.category ? `Kategori: ${filters.category}` : "Alle produkter"}
       </h1>

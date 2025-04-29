@@ -9,8 +9,8 @@ const ProductCardTest = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   return (
-    <div className="rounded-2xl  text-black transition-transform duration-300 hover:scale-102 ">
-      <Link href={`/products/${product.id}`}>
+    <div className="rounded-2xl flex flex-col h-full text-black transition-transform duration-300 hover:scale-102 ">
+      <Link href={`/products/${product.id}`} className="flex-grow">
         <Image
           src={product.thumbnail}
           alt={product.title}
@@ -23,7 +23,9 @@ const ProductCardTest = ({ product }) => {
         <h2 className=" text-xl font-bold  py-1">{product.title}</h2>
         <p className="">{product.price} kr</p>
       </Link>
-      <AddToCartButton product={product} />
+      <div className="mt-4">
+        <AddToCartButton className="mt-auto" product={product} />
+      </div>
     </div>
   );
 };
