@@ -13,6 +13,7 @@ const PageShift = ({ page, totalPages }) => {
           url.searchParams.set("page", page - 1);
           window.location.href = url.toString();
         }}
+        className="cursor-pointer"
       />
 
       <span className="text-lg font-semibold">
@@ -26,6 +27,7 @@ const PageShift = ({ page, totalPages }) => {
           url.searchParams.set("page", page + 1);
           window.location.href = url.toString();
         }}
+        className="cursor-pointer"
       />
     </div>
   );
