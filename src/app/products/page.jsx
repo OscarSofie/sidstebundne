@@ -1,8 +1,8 @@
 // src/app/products/page.jsx
 import ProductCardTest from "../components/ProductCardTest";
-import FilterCatBrand from "../components/FilterCatBrand"; // ny komponent
-import { getProducts } from "../api/products";
+import FilterCatBrand from "../components/FilterCatBrand"; 
 import PageShift from "../components/PageShift";
+import { getProducts } from "../api/products";
 
 export default async function ProductsPage({ searchParams }) {
   const products = await getProducts();
