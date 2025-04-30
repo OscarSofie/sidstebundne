@@ -19,8 +19,8 @@ const ProductCardTest = ({ product }) => {
           className="object-cover rounded-xl mb-4"
         />
 
-        <h3 className=" text-sm text-gray-500 ">{product.brand}</h3>
         <h2 className=" text-xl font-bold  py-1">{product.title}</h2>
+        <h3 className=" text-sm text-gray-500 ">{product.brand}</h3>
         <p className="">{product.price} kr</p>
       </Link>
       <div className="mt-4">
