@@ -57,10 +57,10 @@ export default async function ProductsPage({ searchParams }) {
     <main className="mx-4 md:mx-8 sm:mx-6 px-4 py-12">
       <h1 className="text-4xl font-bold mb-8 mt-4 text-center sm:text-left">
         {query
-          ? `Search results for: "${query}"`
+          ? `Produkter: "${query}"`
           : selectedCategory
           ? `Category: ${selectedCategory}`
-          : "All products"}
+          : "Alle produkter:"}
       </h1>
 
       <FilterCatBrand
