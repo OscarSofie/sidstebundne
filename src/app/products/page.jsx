@@ -6,7 +6,6 @@ import { getProducts } from "../api/products";
 
 export default async function ProductsPage({ searchParams }) {
   const products = await getProducts();
-
   const selectedCategory = searchParams?.category || "";
   const selectedBrand = searchParams?.brand || "";
   const page = Number(searchParams?.page) || 1;

@@ -12,7 +12,7 @@ export default function Home() {
           Alt hvad du mangler – ét sted!
         </h1>
         <p className="text-lg text-gray-700 mb-8">
-          Oplev tusindvis af produkter inden for elektronik, skønhed, bolig og
+          Se alle produkter inden for elektronik, skønhed, bolig og
           meget mere.
         </p>
         <Link
