@@ -1,11 +1,11 @@
 "use client";
-
 import { useState } from "react";
+import { getSearchResults } from "../api/products"; 
 
-const searchBar = () => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <form action="/search" method="GET" className="flex">
+    <form action="/products" method="GET" className="flex">
       <input
         type="text"
         name="q"
@@ -24,4 +24,4 @@ const searchBar = () => {
   );
 };
 
-export default searchBar;
+export default SearchBar;
